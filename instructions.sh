@@ -4,5 +4,10 @@ yarn add react-native-reanimated react-native-gesture-handler react-native-scree
 yarn add @react-navigation/stack
 yarn add @react-navigation/drawer
 
+#React Navite Paper
+yarn add react-native-paper
+yarn add react-native-vector-icons
+npx react-native link react-native-vector-icons
+
 #In the App.js the first line
 import 'react-native-gesture-handler';

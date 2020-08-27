@@ -1,48 +1,26 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  Button,
-} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
+//Navigation
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+//Screens
+import HomeScreen from './views/HomeScreen';
+import DrawerContent from './views/DrawerContent';
 
-const Stack = createStackNavigator();
+// const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
-      />
-    </View>
-  );
-}
-
-function NotificationsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
-  );
-}
 
 const App = () => {
   return (
     <>
       <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-      </Drawer.Navigator>
+        <Drawer.Navigator
+          initialRouteName="Home"
+          drawerContent={(props) => <DrawerContent {...props} />}>
+          <Drawer.Screen name="Home" component={HomeScreen} />
+        </Drawer.Navigator>
         {/* <Stack.Navigator
           screenOptions={{
             headerStyle: {
@@ -61,8 +39,6 @@ const App = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  
-});
+const styles = StyleSheet.create({});
 
 export default App;
