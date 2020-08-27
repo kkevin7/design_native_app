@@ -17,6 +17,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const DrawerContent = (props) => {
+
+    const [isDarkTheme, setIsDarkTheme] = React.useState(false);
+
+    const toggleTheme = () => {
+        setIsDarkTheme(!isDarkTheme);
+    }
+
   return (
     <>
       <View style={{flex: 1}}>
@@ -90,7 +97,16 @@ const DrawerContent = (props) => {
               />
             </Drawer.Section>
 
-            
+            <Drawer.Section title="Preferences" style={styles.bottomDrawerSection}>
+                    <TouchableRipple onPress={() => toggleTheme()}>
+                        <View style={styles.preference}>
+                            <Text>Dark Theme</Text>
+                            <View pointerEvents="none">
+                                <Switch value={isDarkTheme}/>
+                            </View>
+                        </View>
+                    </TouchableRipple>
+            </Drawer.Section>
 
           </View>
         </DrawerContentScrollView>
