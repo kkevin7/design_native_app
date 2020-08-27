@@ -17,12 +17,11 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const DrawerContent = (props) => {
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
-    const [isDarkTheme, setIsDarkTheme] = React.useState(false);
-
-    const toggleTheme = () => {
-        setIsDarkTheme(!isDarkTheme);
-    }
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
 
   return (
     <>
@@ -59,61 +58,87 @@ const DrawerContent = (props) => {
               </View>
             </View>
 
-            <Drawer.Section style={styles.bottomDrawerSection}>
+            <Drawer.Section style={styles.drawerSection}>
               <DrawerItem
                 icon={({color, size}) => (
-                  <MaterialCommunityIcons name="home-outline" color={color} size={size} />
+                  <MaterialCommunityIcons
+                    name="home-outline"
+                    color={color}
+                    size={size}
+                  />
                 )}
                 label="Home"
                 onPress={() => {}}
               />
               <DrawerItem
                 icon={({color, size}) => (
-                  <MaterialCommunityIcons name="account-outline" color={color} size={size} />
+                  <MaterialCommunityIcons
+                    name="account-outline"
+                    color={color}
+                    size={size}
+                  />
                 )}
                 label="Profile"
                 onPress={() => {}}
               />
               <DrawerItem
                 icon={({color, size}) => (
-                  <MaterialCommunityIcons name="bookmark-outline" color={color} size={size} />
+                  <MaterialCommunityIcons
+                    name="bookmark-outline"
+                    color={color}
+                    size={size}
+                  />
                 )}
                 label="Bookmars"
                 onPress={() => {}}
               />
               <DrawerItem
                 icon={({color, size}) => (
-                  <Ionicons name="ios-settings-outline" color={color} size={size} />
+                  <Ionicons
+                    name="ios-settings-outline"
+                    color={color}
+                    size={size}
+                  />
                 )}
                 label="Settings"
                 onPress={() => {}}
               />
               <DrawerItem
                 icon={({color, size}) => (
-                  <MaterialCommunityIcons name="account-check-outline" color={color} size={size} />
+                  <MaterialCommunityIcons
+                    name="account-check-outline"
+                    color={color}
+                    size={size}
+                  />
                 )}
                 label="Support"
                 onPress={() => {}}
               />
             </Drawer.Section>
 
-            <Drawer.Section title="Preferences" style={styles.bottomDrawerSection}>
-                    <TouchableRipple onPress={() => toggleTheme()}>
-                        <View style={styles.preference}>
-                            <Text>Dark Theme</Text>
-                            <View pointerEvents="none">
-                                <Switch value={isDarkTheme}/>
-                            </View>
-                        </View>
-                    </TouchableRipple>
+            <Drawer.Section title="Preferences">
+              <TouchableRipple
+                onPress={() => {
+                  toggleTheme();
+                }}>
+                <View style={styles.preference}>
+                  <Text>Dark Theme</Text>
+                  <View pointerEvents="none">
+                    <Switch value={isDarkTheme} />
+                  </View>
+                </View>
+              </TouchableRipple>
             </Drawer.Section>
-
           </View>
         </DrawerContentScrollView>
         <Drawer.Section style={styles.bottomDrawerSection}>
           <DrawerItem
             icon={({color, size}) => (
-              <MaterialCommunityIcons name="exit-to-app" color={color} size={size} />
+              <MaterialCommunityIcons
+                name="exit-to-app"
+                color={color}
+                size={size}
+              />
             )}
             label="Sign Out"
             onPress={() => {}}
