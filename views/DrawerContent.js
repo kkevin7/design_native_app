@@ -68,7 +68,7 @@ const DrawerContent = (props) => {
                   />
                 )}
                 label="Home"
-                onPress={() => {}}
+                onPress={() => {props.navigation.navigate('Home')}}
               />
               <DrawerItem
                 icon={({color, size}) => (
@@ -79,7 +79,7 @@ const DrawerContent = (props) => {
                   />
                 )}
                 label="Profile"
-                onPress={() => {}}
+                onPress={() => {props.navigation.navigate('Profile')}}
               />
               <DrawerItem
                 icon={({color, size}) => (
@@ -90,7 +90,7 @@ const DrawerContent = (props) => {
                   />
                 )}
                 label="Bookmars"
-                onPress={() => {}}
+                onPress={() => {props.navigation.navigate('BookmarsScreen')}}
               />
               <DrawerItem
                 icon={({color, size}) => (
@@ -101,7 +101,7 @@ const DrawerContent = (props) => {
                   />
                 )}
                 label="Settings"
-                onPress={() => {}}
+                onPress={() => {props.navigation.navigate('SettingsScreen')}}
               />
               <DrawerItem
                 icon={({color, size}) => (
@@ -112,7 +112,7 @@ const DrawerContent = (props) => {
                   />
                 )}
                 label="Support"
-                onPress={() => {}}
+                onPress={() => {props.navigation.navigate('SupportScreen')}}
               />
             </Drawer.Section>
 

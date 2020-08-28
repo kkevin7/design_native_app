@@ -6,9 +6,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 //Screens
-import HomeScreen from './views/HomeScreen';
 import DrawerContent from './views/DrawerContent';
 import MainTabScreen from './views/MainTabScreen';
+import HomeScreen from './views/HomeScreen';
+import ProfileScreen from './views/ProfileScreen';
+import BookmarsScreen from './views/BookmarkScreen';
+import SettingScreen from './views/SettingScreen';
+import SupportScreen from './views/SupportScreen';
 
 // const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -20,7 +24,12 @@ const App = () => {
         <Drawer.Navigator
           initialRouteName="Home"
           drawerContent={(props) => <DrawerContent {...props} />}>
-          <Drawer.Screen name="Home" component={MainTabScreen} />
+          <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+          <Drawer.Screen name="HomeScreen" component={HomeScreen} />
+          <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
+          <Drawer.Screen name="BookmarsScreen" component={BookmarsScreen} />
+          <Drawer.Screen name="SettingScreen" component={SettingScreen} />
+          <Drawer.Screen name="SupportScreen" component={SupportScreen} />
         </Drawer.Navigator>
         {/* <Stack.Navigator
           screenOptions={{
