@@ -13,3 +13,9 @@ npx react-native link react-native-vector-icons
 
 #In the App.js the first line
 import 'react-native-gesture-handler';
+
+#Gradients
+yarn add react-native-linear-gradient
+
+#Animates
+yarn add react-native-animatable

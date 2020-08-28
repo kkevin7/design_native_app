@@ -13,6 +13,7 @@ import ProfileScreen from './views/ProfileScreen';
 import BookmarsScreen from './views/BookmarkScreen';
 import SettingScreen from './views/SettingScreen';
 import SupportScreen from './views/SupportScreen';
+import RootStackScreen from './views/RootStackScreen';
 
 // const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -21,7 +22,8 @@ const App = () => {
   return (
     <>
       <NavigationContainer>
-        <Drawer.Navigator
+        <RootStackScreen />
+        {/* <Drawer.Navigator
           initialRouteName="Home"
           drawerContent={(props) => <DrawerContent {...props} />}>
           <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
@@ -30,7 +32,7 @@ const App = () => {
           <Drawer.Screen name="BookmarsScreen" component={BookmarsScreen} />
           <Drawer.Screen name="SettingScreen" component={SettingScreen} />
           <Drawer.Screen name="SupportScreen" component={SupportScreen} />
-        </Drawer.Navigator>
+        </Drawer.Navigator> */}
         {/* <Stack.Navigator
           screenOptions={{
             headerStyle: {
