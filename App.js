@@ -8,6 +8,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 //Screens
 import HomeScreen from './views/HomeScreen';
 import DrawerContent from './views/DrawerContent';
+import MainTabScreen from './views/MainTabScreen';
 
 // const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -19,7 +20,7 @@ const App = () => {
         <Drawer.Navigator
           initialRouteName="Home"
           drawerContent={(props) => <DrawerContent {...props} />}>
-          <Drawer.Screen name="Home" component={HomeScreen} />
+          <Drawer.Screen name="Home" component={MainTabScreen} />
         </Drawer.Navigator>
         {/* <Stack.Navigator
           screenOptions={{
