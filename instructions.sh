@@ -19,3 +19,6 @@ yarn add react-native-linear-gradient
 
 #Animates
 yarn add react-native-animatable
+
+#AsyncStorage
+yarn add @react-native-community/async-storage 
