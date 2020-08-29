@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -8,13 +8,15 @@ import {
   TouchableOpacity,
   Platform,
   TextInput,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+
+import {AuthContext} from '../components/context';
 
 const SignInScreen = ({navigation}) => {
   const [data, setData] = useState({
@@ -23,6 +25,8 @@ const SignInScreen = ({navigation}) => {
     check_textInputChange: false,
     secureTextEntry: true,
   });
+
+  const {signIn} = useContext(AuthContext);
 
   const textInputChange = (val) => {
     if (val.length > 0) {
@@ -57,14 +61,13 @@ const SignInScreen = ({navigation}) => {
   return (
     <>
       <View style={styles.container}>
-      <StatusBar backgroundColor="#1f65ff" barStyle="light-content"/>
+        <StatusBar backgroundColor="#1f65ff" barStyle="light-content" />
         <View style={styles.header}>
-          <Animatable.Text animation="fadeIn" style={styles.text_header}>Welcome!</Animatable.Text>
+          <Animatable.Text animation="fadeIn" style={styles.text_header}>
+            Welcome!
+          </Animatable.Text>
         </View>
-        <Animatable.View 
-            animation="fadeInUpBig"
-            style={styles.footer}
-        >
+        <Animatable.View animation="fadeInUpBig" style={styles.footer}>
           <Text style={styles.text_footer}>Email</Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" color="#05375a" size={20} />
@@ -109,27 +112,42 @@ const SignInScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
 
-            <View style={styles.button}>
-                <LinearGradient
-                    colors={['#3D80E4', '#1f65ff']}
-                    style={styles.signIn}
-                >
-                    <Text style={[styles.textSign, {color: '#fff'}]}>Sign In</Text>
-                </LinearGradient>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('SignUpScreen')}
-                    style={[styles.signIn, {
-                        borderColor: "#1f65ff",
-                        borderWidth: 1,
-                        marginTop: 15,
-                    }]}
-                >
-                    <Text style={[styles.textSign, {
-                        color: "#1f65ff",
-                    }]}>Sign Up</Text>
-                </TouchableOpacity>
-            </View>
-
+          <TouchableOpacity>
+                <Text style={{color: '#1f65ff', marginTop: Platform.OS === 'ios'? 15 : 25}}>Forgot password?</Text>
+            </TouchableOpacity>
+          <View style={styles.button}>
+            <TouchableOpacity
+              style={styles.signIn}
+              onPress={() => {
+                console.log("Tap1")
+                signIn()}}>
+              <LinearGradient
+                colors={['#3D80E4', '#1f65ff']}
+                style={styles.signIn}>
+                <Text style={[styles.textSign, {color: '#fff'}]}>Sign In</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('SignUpScreen')}
+              style={[
+                styles.signIn,
+                {
+                  borderColor: '#1f65ff',
+                  borderWidth: 1,
+                  marginTop: 15,
+                },
+              ]}>
+              <Text
+                style={[
+                  styles.textSign,
+                  {
+                    color: '#1f65ff',
+                  },
+                ]}>
+                Sign Up
+              </Text>
+            </TouchableOpacity>
+          </View>
         </Animatable.View>
       </View>
     </>

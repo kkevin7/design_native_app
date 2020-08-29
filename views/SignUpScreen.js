@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Platform,
   TextInput,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
@@ -73,14 +73,13 @@ const SignUpScreen = ({navigation}) => {
   return (
     <>
       <View style={styles.container}>
-      <StatusBar backgroundColor="#1f65ff" barStyle="light-content"/>
+        <StatusBar backgroundColor="#1f65ff" barStyle="light-content" />
         <View style={styles.header}>
-          <Animatable.Text animation="fadeIn" style={styles.text_header}>Register Now!</Animatable.Text>
+          <Animatable.Text animation="fadeIn" style={styles.text_header}>
+            Register Now!
+          </Animatable.Text>
         </View>
-        <Animatable.View 
-            animation="fadeInUpBig"
-            style={styles.footer}
-        >
+        <Animatable.View animation="fadeInUpBig" style={styles.footer}>
           <Text style={styles.text_footer}>Email</Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" color="#05375a" size={20} />
@@ -151,27 +150,35 @@ const SignUpScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
 
-            <View style={styles.button}>
-                <LinearGradient
-                    colors={['#3D80E4', '#1f65ff']}
-                    style={styles.signIn}
-                >
-                    <Text style={[styles.textSign, {color: '#fff'}]}>Sign Up</Text>
-                </LinearGradient>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('SignInScreen')}
-                    style={[styles.signIn, {
-                        borderColor: "#1f65ff",
-                        borderWidth: 1,
-                        marginTop: 15,
-                    }]}
-                >
-                    <Text style={[styles.textSign, {
-                        color: "#1f65ff",
-                    }]}>Sign In</Text>
-                </TouchableOpacity>
-            </View>
-
+          <View style={styles.button}>
+            <TouchableOpacity style={styles.signIn} onPress={() => {}}>
+              <LinearGradient
+                colors={['#3D80E4', '#1f65ff']}
+                style={styles.signIn}>
+                <Text style={[styles.textSign, {color: '#fff'}]}>Sign Up</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('SignInScreen')}
+              style={[
+                styles.signIn,
+                {
+                  borderColor: '#1f65ff',
+                  borderWidth: 1,
+                  marginTop: 15,
+                },
+              ]}>
+              <Text
+                style={[
+                  styles.textSign,
+                  {
+                    color: '#1f65ff',
+                  },
+                ]}>
+                Sign In
+              </Text>
+            </TouchableOpacity>
+          </View>
         </Animatable.View>
       </View>
     </>
