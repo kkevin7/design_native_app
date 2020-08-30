@@ -3,6 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 //React Native Paper
 import {
+  useTheme,
   Avatar,
   Title,
   Caption,
@@ -19,13 +20,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {AuthContext} from '../components/context';
 
 const DrawerContent = (props) => {
-  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
-  const {signOut} = useContext(AuthContext);
+  const paperTheme = useTheme();
 
-  const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-  };
+  const {signOut, toggleTheme} = useContext(AuthContext);
 
   return (
     <>
@@ -128,7 +126,7 @@ const DrawerContent = (props) => {
                 <View style={styles.preference}>
                   <Text>Dark Theme</Text>
                   <View pointerEvents="none">
-                    <Switch color="#3D80E4" value={isDarkTheme} />
+                    <Switch color="#3D80E4" value={paperTheme.dark} />
                   </View>
                 </View>
               </TouchableRipple>

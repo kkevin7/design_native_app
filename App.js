@@ -2,10 +2,19 @@ import 'react-native-gesture-handler';
 import React, {useState, useEffect, useReducer, useMemo} from 'react';
 import {StyleSheet, ScrollView, View, ActivityIndicator} from 'react-native';
 //Navigation
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { 
+  NavigationContainer, 
+  DefaultTheme as NavigationDefaultTheme,
+  DarkTheme as NavigationDarkTheme
+} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-community/async-storage';
+//React Native Paper
+import { 
+  Provider as PaperProvider, 
+  DefaultTheme as PaperDefaultTheme,
+  DarkTheme as PaperDarkTheme 
+} from 'react-native-paper';
 //Screens
 import DrawerContent from './views/DrawerContent';
 import MainTabScreen from './views/MainTabScreen';
@@ -24,6 +33,7 @@ const Drawer = createDrawerNavigator();
 const App = () => {
   // const [isLoading, setIsLoading] = useState(true);
   // const [userToken, setUserToken] = useState(null);
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
   const initialLoginState = {
     isLoading: true,
@@ -31,6 +41,31 @@ const App = () => {
     userToken: null,
   }
 
+
+  const CustomDefaultTheme = {
+    ...NavigationDefaultTheme,
+    ...PaperDefaultTheme,
+    colors: {
+      ...NavigationDefaultTheme.colors,
+      ...PaperDefaultTheme.colors,
+      background: '#ffffff',
+      text: '#333333'
+    }
+  }
+  
+  const CustomDarkTheme = {
+    ...NavigationDarkTheme,
+    ...PaperDarkTheme,
+    colors: {
+      ...NavigationDarkTheme.colors,
+      ...PaperDarkTheme.colors,
+      background: '#333333',
+      text: '#ffffff'
+    }
+  }
+
+  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+  
   const loginReducer = (prevState, action) => {
     switch(action.type){
       case 'RETRIEVE_TOKEN':
@@ -95,6 +130,9 @@ const App = () => {
       // setUserToken('fgkj');
       // setIsLoading(false);
     },
+    toggleTheme: () => {
+      setIsDarkTheme(isDarkTheme => !isDarkTheme)
+    }
   }));
 
   useEffect(() => {
@@ -122,8 +160,9 @@ const App = () => {
 
   return (
     <>
+      <PaperProvider theme={theme}>
       <AuthContext.Provider value={authContext}>
-        <NavigationContainer>
+        <NavigationContainer theme={theme}>
           {loginState.userToken ? (
             <Drawer.Navigator
               initialRouteName="Home"
@@ -138,21 +177,9 @@ const App = () => {
           ) : (
             <RootStackScreen />
           )}
-          {/* <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: '#3D80E4',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: Platform.OS === 'ios' ? 'bold' : 'normal',
-            },
-            headerTitleAlign: 'center',
-          }}>
-          <Stack.Screen name="Home" component={HomeScreen} />
-        </Stack.Navigator> */}
         </NavigationContainer>
       </AuthContext.Provider>
+      </PaperProvider>
     </>
   );
 };
