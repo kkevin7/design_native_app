@@ -66,20 +66,19 @@ const App = () => {
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
 
   const authContext = useMemo(() => ({
-    signIn: async (userName, password) => {
+    signIn: async(foundUser) => {
       // setUserToken('fgkj');
       // setIsLoading(false);
-      let userToken = null;
-      if(userName === 'user' && password === 'pass' ){
-        try {
-          userToken = 'djfsjfsdf';
-          await AsyncStorage.setItem('userToken', userToken);
-        } catch (error) {
-          console.log(error)
-        }
+      const userToken = String(foundUser[0].userToken);
+      const userName = foundUser[0].username;
+      
+      try {
+        await AsyncStorage.setItem('userToken', userToken);
+      } catch(e) {
+        console.log(e);
       }
-      console.log("token", userToken)
-      dispatch({type: 'LOGIN', id: userName, token: userToken });
+      // console.log('user token: ', userToken);
+      dispatch({ type: 'LOGIN', id: userName, token: userToken });
     },
     signOut: async () => {
       // setUserToken(null);
@@ -99,18 +98,19 @@ const App = () => {
   }));
 
   useEffect(() => {
-    setTimeout(async () => {
+    setTimeout(async() => {
       // setIsLoading(false);
-      let userToken = null;
-        try {
-          userToken = 'djfsjfsdf';
-          await AsyncStorage.setItem('userToken', userToken);
-        } catch (error) {
-          console.log(error)
-        }
-      dispatch({type: 'RETRIEVE_TOKEN', token: userToken });
+      let userToken= null;
+      try {
+        userToken = await AsyncStorage.getItem('userToken');
+      } catch(e) {
+        console.log(e);
+      }
+      // console.log('user token: ', userToken);
+      dispatch({ type: 'RETRIEVE_TOKEN', token: userToken });
     }, 1000);
   }, []);
+
 
   if (loginState.isLoading) {
     return (
